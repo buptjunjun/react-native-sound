@@ -231,7 +231,9 @@ RCT_EXPORT_METHOD(pause:(nonnull NSNumber*)key withCallback:(RCTResponseSenderBl
   AVAudioPlayer* player = [self playerForKey:key];
   if (player) {
     [player pause];
-    callback(@[]);
+    
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
+      callback(@[]);
   }
 }
 
@@ -240,7 +242,9 @@ RCT_EXPORT_METHOD(stop:(nonnull NSNumber*)key withCallback:(RCTResponseSenderBlo
   if (player) {
     [player stop];
     player.currentTime = 0;
-    callback(@[]);
+    
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
+      callback(@[]);
   }
 }
 
