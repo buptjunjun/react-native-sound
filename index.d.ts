@@ -72,6 +72,8 @@ declare class Sound {
    */
   stop(cb?: () => void): void
 
+  stopAndRmNotify(cb?: () => void): void
+
   /**
    * Reset the audio player to its uninitialized state (android only)
    */

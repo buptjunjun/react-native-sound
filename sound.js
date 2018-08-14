@@ -117,6 +117,19 @@ Sound.prototype.stop = function(callback) {
   return this;
 };
 
+
+Sound.prototype.stopAndRmNotify = function(callback) {
+  if (this._loaded) {
+    RNSound.stopAndRmNotify(this._key, () => {
+      this._playing = false;
+      callback && callback();
+    });
+  }
+
+  return this;
+};
+
+
 Sound.prototype.reset = function() {
   if (this._loaded && IsAndroid) {
     RNSound.reset(this._key);
